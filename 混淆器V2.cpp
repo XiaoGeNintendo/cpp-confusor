@@ -202,7 +202,7 @@ vector<string> syss={
 				"push",
 				"top",
 				"count",
-				"isaplha",
+				"isalpha",
 				"isdigit",
 				"islower",
 				"isupper",
@@ -236,6 +236,11 @@ vector<string> syss={
 				"sort",
 				"if",
 				"else",
+				"freopen",
+				"__builtin_ctz",
+				"__builtin_popcount",
+				"stdin",
+				"stdout"
 			  };
 
 
@@ -317,6 +322,9 @@ int main(int argc,char* argv[]){
 		}
 		if(isVarName(vs[i]) && !isSystem(vs[i])){
 			if(inKyu){
+				if(vs[i]=="h"){
+					continue;
+				}
 				addConfuse(vs[i],vs[i]);
 				cout<<"[new_confuse]De-Confused:"<<vs[i]<<endl;
 				continue;
@@ -331,7 +339,7 @@ int main(int argc,char* argv[]){
 	cout<<"END"<<endl;
 	inIt=false;
 	inKyu=false;
-	freopen(("confused_"+path).c_str(),"w",stdout);
+	freopen((path+"_cc").c_str(),"w",stdout);
 	for(int i=0;i<vs.size();i++){
 		if(vs[i]=="\"" && vs[i-1]!="\\"){
 			inIt=!inIt;
@@ -351,4 +359,3 @@ int main(int argc,char* argv[]){
 	}
 	return 0;
 }
-
