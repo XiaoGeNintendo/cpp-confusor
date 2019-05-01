@@ -157,91 +157,7 @@ bool isVarName(string s){
 	return true;
 } 
 
-vector<string> syss={
-				"int",
-				"long",
-				"string",
-				"vector",
-				"main",
-				"return",
-				"true",
-				"false",
-				"short",
-				"float",
-				"double",
-				"map",
-				"pair",
-				"include",
-				"define",
-				"set",
-				"unordered_map",
-				"queue",
-				"deque",
-				"bool",
-				"register",
-				"inline",
-				"erase",
-				"size",
-				"using",
-				"namespace",
-				"std",
-				"void",
-				"char",
-				"cout",
-				"endl",
-				"cin",
-				"const",
-				"size",
-				"first",
-				"second",
-				"iostream",
-				"algorithm",
-				"define",
-				"push_back",
-				"pop",
-				"push",
-				"top",
-				"count",
-				"isalpha",
-				"isdigit",
-				"islower",
-				"isupper",
-				"operator",
-				"template",
-				"typename",
-				"end",
-				"begin",
-				"ostream",
-				"break",
-				"for",
-				"while",
-				"do",
-				"typedef",
-				"srand",
-				"rand",
-				"time",
-				"system",
-				"tie",
-				"sync_with_stdio",
-				"ios",
-				"multimap",
-				"multiset",
-				"clock",
-				"getline",
-				"scanf",
-				"printf",
-				"iterator",
-				"priority_queue",
-				"make_pair",
-				"sort",
-				"if",
-				"else",
-				"freopen",
-				"__builtin_ctz",
-				"__builtin_popcount",
-				"stdin",
-				"stdout"
-			  };
+vector<string> syss;
 
 
 bool isSystem(string s){
@@ -271,10 +187,26 @@ string getRandomChars(int a,int b){
 	return s;
 }
 
+
+void read_syss(){
+	
+	
+	ifstream is;
+	is.open("syss.txt");
+	string s;
+	while(is>>s){
+		syss.push_back(s);
+		cout<<"[read_syss]read system command "<<s<<endl;
+	}
+	
+	
+}
 //HXQ V2 
 int main(int argc,char* argv[]){
 	
+	cout<<"Reading Syss"<<endl;
 	
+	read_syss();
 	if(argc==1){
 	
 		cout<<"File path to be confused:";
@@ -322,9 +254,6 @@ int main(int argc,char* argv[]){
 		}
 		if(isVarName(vs[i]) && !isSystem(vs[i])){
 			if(inKyu){
-				if(vs[i]=="h"){
-					continue;
-				}
 				addConfuse(vs[i],vs[i]);
 				cout<<"[new_confuse]De-Confused:"<<vs[i]<<endl;
 				continue;
@@ -339,7 +268,7 @@ int main(int argc,char* argv[]){
 	cout<<"END"<<endl;
 	inIt=false;
 	inKyu=false;
-	freopen((path+"_cc").c_str(),"w",stdout);
+	freopen(("confused_"+path).c_str(),"w",stdout);
 	for(int i=0;i<vs.size();i++){
 		if(vs[i]=="\"" && vs[i-1]!="\\"){
 			inIt=!inIt;
