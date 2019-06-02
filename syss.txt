@@ -5,10 +5,13 @@ vector
 main
 return
 true
+unsigned
 false
+swap
 short
 float
 double
+clear
 map
 pair
 include
@@ -70,6 +73,8 @@ getline
 scanf
 printf
 iterator
+max
+min
 priority_queue
 make_pair
 sort
